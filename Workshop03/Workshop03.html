@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workshop03</title>
+    <style>
+        #textdata {
+            width: 300px;
+            height: 100px;
+        }
+
+        #coordinates {
+            width: 300px;
+            height: 150px;
+            border: 1px solid black;
+            margin-top: 20px;
+        }
+
+        .focus {
+            background-color: lightyellow;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Exercise 1</h2>
+    <button id="clickMeButton">Click me</button>
+    <button id="showTableButton">Show table</button>
+    <button id="geoLocationButton">Geolocation</button>
+
+    <div id="tableContainer"></div>
+    <div id="geoContainer"></div>
+
+    <hr/>
+
+    <h2 id="exercise2Heading">Exercise 2</h2>
+
+    <hr/>
+
+    <h2>Exercise 3</h2>
+    <form id="myForm">
+        <textarea id="textdata"></textarea><br>
+        <span id="charcount">Characters: 0</span><br>
+        <button type="submit">Send me</button>
+    </form>
+
+    <hr/>
+
+    <h2 id="coords">Exercise 4</h2>
+    <div id="coordinates"></div>
+
+    <script>
+        document.getElementById('clickMeButton').onclick = function() {
+            let currentDate = new Date();
+            alert("You clicked me! Current date: " + currentDate);
+        };
+
+        document.getElementById('showTableButton').onclick = function() {
+            showTable();
+        };
+
+        function showTable() {
+            let tableHTML = `
+                <table border="1" cellspacing="0" cellpadding="10">
+                    <tr>
+                        <th>Name</th>
+                        <th>Position</th>
+                        <th>Salary</th>
+                    </tr>
+                    <tr>
+                        <td>Tiger Nixon</td>
+                        <td>System Architect</td>
+                        <td>$320,800</td>
+                    </tr>
+                    <tr>
+                        <td>Garrett Winters</td>
+                        <td>Accountant</td>
+                        <td>$170,750</td>
+                    </tr>
+                    <tr>
+                        <td>Ashton Cox</td>
+                        <td>Junior Technical Author</td>
+                        <td>$86,000</td>
+                    </tr>
+                    <tr>
+                        <td>Cedric Kelly</td>
+                        <td>Senior Javascript Developer</td>
+                        <td>$433,060</td>
+                    </tr>
+                    <tr>
+                        <td>Airi Satou</td>
+                        <td>Accountant</td>
+                        <td>$162,700</td>
+                    </tr>
+                </table>
+            `;
+            document.getElementById('tableContainer').innerHTML = tableHTML;
+        }
+
+        document.getElementById('geoLocationButton').onclick = function() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError);
+            } else {
+                document.getElementById('geoContainer').innerHTML = "Geolocation is not supported by this browser.";
+            }
+        };
+
+        function showPosition(position) {
+            let latitude = position.coords.latitude;
+            let longitude = position.coords.longitude;
+            let geoData = `Latitude: ${latitude}, Longitude: ${longitude}`;
+            console.log(geoData);
+            document.getElementById('geoContainer').innerHTML = geoData;
+        }
+
+        function showError(error) {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    document.getElementById('geoContainer').innerHTML = "User denied the request for Geolocation.";
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    document.getElementById('geoContainer').innerHTML = "Location information is unavailable.";
+                    break;
+                case error.TIMEOUT:
+                    document.getElementById('geoContainer').innerHTML = "The request to get user location timed out.";
+                    break;
+                case error.UNKNOWN_ERROR:
+                    document.getElementById('geoContainer').innerHTML = "An unknown error occurred.";
+                    break;
+            }
+        }
+
+        let exercise2Heading = document.getElementById('exercise2Heading');
+
+        exercise2Heading.onmouseover = function() {
+            console.log("Stepped over by a mouse!");
+        };
+
+        exercise2Heading.onmouseout = function() {
+            alert("Bye bye mouse!");
+        };
+
+        let textarea = document.getElementById('textdata');
+        let charCountSpan = document.getElementById('charcount');
+
+        textarea.onfocus = function() {
+            console.log("Please fill in the form with proper data.");
+            textarea.classList.add('focus');
+        };
+
+        textarea.onblur = function() {
+            textarea.classList.remove('focus');
+        };
+
+        textarea.onkeydown = function() {
+            setTimeout(function() {
+                let textLength = textarea.value.length;
+                charCountSpan.innerText = `Characters: ${textLength}`;
+            }, 0);
+        };
+
+        document.getElementById('myForm').onsubmit = function(event) {
+            event.preventDefault();
+            let textValue = textarea.value.trim();
+            if (textValue === "") {
+                alert("Please enter some data in the textarea.");
+            } else {
+                alert("Form submitted successfully!");
+            }
+        };
+
+        let coordinatesDiv = document.getElementById('coordinates');
+        let heading = document.getElementById('coords');
+
+        coordinatesDiv.onmousemove = function(event) {
+            let x = event.clientX;
+            let y = event.clientY;
+            console.log("X: " + x + ", Y: " + y);
+            coordinatesDiv.innerHTML = "X: " + x + ", Y: " + y;
+            heading.innerHTML = "Mouse Coordinates - X: " + x + ", Y: " + y;
+        };
+
+    </script>
+</body>
+</html>
