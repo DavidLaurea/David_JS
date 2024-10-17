@@ -1,0 +1,139 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Workshop 5</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <h1>Workshop 5: Smart Forms</h1>
+    <hr />
+    <p>In this exercise we will practice the art of Smart Forms handling. Use the lecture-material as a reference guide
+        side by side these exercises. It might also be a good idea to save the lines of code you write during the
+        exercises for later use. </p>
+
+    <hr />
+    <h2>Exercise 1: Contact Form</h2>
+    <p>Below you see a simple contact form which has fields for email address and comments.</p>
+    <form onsubmit="return validateForm(event)">
+        <div class="no-border">
+            <label>Email address:<br>
+                <input type="text" name="email" id="email">
+            </label>
+            <span id="email-error" style="color:red"></span>
+        </div>
+        <div class="no-border">
+            <label>Comment:<br>
+            </label>
+            <textarea name="comment" id="comment"></textarea>
+            <span id="comment-error" style="color:red"></span>
+        </div>
+        <br>
+        <input type="submit" value="Send">
+    </form>
+
+    <hr />
+    <h2>Exercise 2: Membership Calculator</h2>
+    <form id="membershipForm">
+        <fieldset>
+            <legend>Create Your Membership</legend>
+            <p>Complete this form to calculate your membership. There's a 20% discount if you enroll for more than two
+                years!</p>
+            <div>
+                <label for="type">Type</label>
+                <select name="type" id="type" size="4" required>
+                    <option value="basic">Basic - $10.00</option>
+                    <option value="premium">Premium - $15.00</option>
+                    <option value="gold">Gold - $20.00</option>
+                    <option value="platinum">Platinum - $25.00</option>
+                </select>
+            </div>
+            <div>
+                <label for="years">Years</label>
+                <input type="number" name="years" id="years" min="1" required>
+            </div>
+            <div>
+                <label for="cost">Cost</label>
+                <input type="text" name="cost" id="cost" disabled>
+            </div>
+            <p id="discountMessage" style="color:green"></p>
+            <input type="submit" value="Calculate" id="submit">
+        </fieldset>
+    </form>
+
+    <hr />
+    <h2>Exercise 3: Book Order</h2>
+    <fieldset>
+        <p>Calculate a bulk book order.</p>
+        <div>
+            <label for="quantity">Quantity</label>
+            <input type="number" name="quantity" id="quantity" value="1" min="1" required>
+        </div>
+        <div>
+            <label for="price">Price Per Unit</label>
+            <input type="text" name="price" id="price" value="1.00" required>
+        </div>
+        <div>
+            <label for="tax">VAT (%)</label>
+            <input type="text" name="tax" id="tax" value="0.0" required>
+        </div>
+        <div>
+            <label for="discount">Discount</label>
+            <input type="text" name="discount" id="discount" value="0.00" required>
+        </div>
+        <div>
+            <label for="shipping">Shipping</label>
+            <input type="text" name="shipping" id="shipping" value="0.00" required>
+        </div>
+        <div>
+            <label for="total">Total</label>
+            <input type="text" name="total" id="total" value="0.00" disabled>
+        </div>
+        <div>
+            <input type="submit" value="Calculate" id="submit-calculate">
+        </div>
+    </fieldset>
+
+    <hr />
+    <h2>Exercise 4: Contact Form with Hidden Fields</h2>
+    <form onsubmit="return validateForm(event)">
+        <div class="no-border">
+            <label>Email address:<br>
+                <input type="text" name="email" id="email">
+            </label>
+            <span id="email-error" style="color:red"></span>
+        </div>
+        <div class="no-border">
+            <label>Comment:<br>
+            </label>
+            <textarea name="comment" id="comment"></textarea>
+            <span id="comment-error" style="color:red"></span>
+        </div>
+
+        <div class="no-border">
+            <label for="contact-method">Preferred contact method:<br>
+                <select id="contact-method" name="contact-method" onchange="showDetailsField()">
+                    <option value="">Select method</option>
+                    <option value="email">Email</option>
+                    <option value="phone">Phone</option>
+                    <option value="sms">SMS</option>
+                </select>
+            </label>
+        </div>
+        
+        <div class="no-border" id="contact-detail-field" style="display:none;">
+            <label>Details:<br>
+                <input type="text" id="contact-detail">
+            </label>
+        </div>
+        
+        <br>
+        <input type="submit" value="Send">
+    </form>
+
+</body>
+
+</html>
