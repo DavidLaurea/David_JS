@@ -1,4 +1,4 @@
-// Exercise 1: Contact Form Validation
+// Exercise 1
 function validateForm(event) {
     event.preventDefault();
     
@@ -20,7 +20,7 @@ function validateForm(event) {
         commentError.innerHTML = "Comment cannot be empty.";
         valid = false;
     } else if (comment.length > 50) {
-        comment = comment.substring(0, 50); // Trimming comment
+        comment = comment.substring(0, 50);
     }
 
     if (valid) {
@@ -31,7 +31,7 @@ function validateForm(event) {
     return false;
 }
 
-// Exercise 2: Membership Calculator
+// Exercise 2
 document.getElementById('membershipForm').addEventListener('submit', function(event) {
     event.preventDefault();
     let type = document.getElementById('type').value;
@@ -62,7 +62,7 @@ document.getElementById('membershipForm').addEventListener('submit', function(ev
     costElement.value = `$${totalCost.toFixed(2)}`;
 });
 
-// Exercise 3: Book Order Calculation
+// Exercise 3
 document.getElementById('submit-calculate').addEventListener('click', function() {
     let quantity = parseInt(document.getElementById('quantity').value);
     let price = parseFloat(document.getElementById('price').value);
@@ -71,7 +71,7 @@ document.getElementById('submit-calculate').addEventListener('click', function()
     let shipping = parseFloat(document.getElementById('shipping').value);
     
     if (quantity > 100) {
-        discount *= 2; // Double the discount if quantity > 100
+        discount *= 2;
     }
 
     let subtotal = (quantity * price);
@@ -81,7 +81,7 @@ document.getElementById('submit-calculate').addEventListener('click', function()
     document.getElementById('total').value = total.toFixed(2);
 });
 
-// Exercise 4: Hidden Extra Fields
+// Exercise 4
 function showDetailsField() {
     const method = document.getElementById('contact-method').value;
     const detailField = document.getElementById('contact-detail-field');
